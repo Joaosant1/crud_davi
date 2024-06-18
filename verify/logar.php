@@ -18,6 +18,8 @@
                
                 $_SESSION['id'] = $dado['id'];
 
+                $_SESSION['nome'] = $dado['login'];
+
                 header('Location: ../index.php');
             } else {
                 header('Location: ../login.php?entrou=nao');
