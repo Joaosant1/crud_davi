@@ -1,19 +1,18 @@
 <?php
-   
-    if (isset($_POST['btn'])) {
-        
-        if (isset($_POST['login']) && 
-        !empty($_POST['login']) && 
-        isset($_POST['senha']) && 
-        !empty($_POST['senha'])
+        if (isset($_POST['nome']) && 
+        !empty($_POST['nome']) && 
+        isset($_POST['preco']) && 
+        !empty($_POST['preco'])
         ) {
-            require '../config.php';
-            $login = $_POST['login'];
-            $senha = $_POST['senha'];
-            $sql = "SELECT * FROM usuario WHERE login = :login AND senha = :senha";
+            require '../verify/config.php';
+            $nome = $_POST['nome'];
+            $preco = $_POST['preco'];
+            $sql = "INSERT INTO servicos(nome,preco) VALUES(:nome,:preco)";
             $resultado = $conn->prepare($sql);
-            $resultado->bindValue("login", $login);
-            $resultado->bindValue("senha", $senha);
+            $resultado->bindValue(":nome", $nome);
+            $resultado->bindValue(":preco", $preco);
             $resultado->execute();
+
+            header('Location: servicos.php?nome_servico=$nome&sucesso=ok');
         }
-    }
+    

@@ -4,7 +4,7 @@
         
         if (isset($_POST['login']) && !empty($_POST['login']) && isset($_POST['senha']) && !empty($_POST['senha'])) {
             session_start();
-            require '../config.php';
+            require 'config.php';
             $login = $_POST['login'];
             $senha = $_POST['senha'];
             $sql = "SELECT * FROM usuario WHERE login = :login AND senha = :senha";

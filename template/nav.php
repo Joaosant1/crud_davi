@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../index.php" style="color: #fff;" class="ms-1 d-none d-sm-inline">Relatório</a>
+          <a class="nav-link active" aria-current="page" href="../index.php" style="color: #fff;" class="ms-1 d-none d-sm-inline">Menu Principal</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../servicos/servicos.php" style="color: #fff;" class="ms-1 d-none d-sm-inline">Serviços</a>
@@ -22,9 +22,7 @@
             <?php echo $_SESSION['nome'] ?>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="../verify/logout.php">Sair da conta</a></li>
           </ul>
         </li>
       </ul>

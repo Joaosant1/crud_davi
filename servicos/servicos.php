@@ -3,13 +3,11 @@ require '../template/header.php'
 ?>
 
 <?php
-$sql = "SELECT * FROM serviços";
+$sql = "SELECT * FROM servicos";
 $resultado = $conn->prepare($sql);
 $resultado->execute();
-$servicos = $resultado->fetchAll(PDO::FETCH_ASSOC);
+$servicos = $resultado->fetchALL(PDO::FETCH_ASSOC);
 ?>
-
-
 
 <?php
 require '../template/nav.php' 
@@ -24,7 +22,24 @@ require '../template/nav.php'
  
   <div class="row mt-5 d-flex justify-content-center align-items-center">
     <div class="col-md-6">
-      
+      <?php
+      if(isset($_GET['delete'])) {
+                if($_GET['delete'] == 'ok') {
+                echo '<div class="alert alert-success alert-dismissible">
+                <strong>Atençao!</strong> Produto Deletado.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button> 
+                </div>';
+                }}
+                ?>
+      <?php
+      if(isset($_GET['sucesso'])) {
+                if($_GET['sucesso'] == 'ok') {
+                echo '<div class="alert alert-success alert-dismissible">
+                <strong>Atençao!</strong> Serviço Cadastrado.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="close"></button> 
+                </div>';
+                }}
+                ?>
     <?php
         if(count($servicos) > 0){
         ?>
@@ -43,12 +58,19 @@ require '../template/nav.php'
             echo "<tr>";
             echo "<td>" . $servico['id'] . "</td>" ;
             echo "<td>" . $servico['nome'] . "</td>";  
-            echo "<td>" . "R$" . $servico['preco'] . "<a href='#' class='btn btn-secondary ml-5'>Editar</a> <a href='#' class='btn btn-danger ml-5'>Exluir</a> </td>";               
-        }   echo "</tr>";        
-
+            echo "<td>" . "R$" . $servico['preco'] . "<a href='#' class='btn btn-secondary ml-5'>Editar</a></td>";
+            echo "<td>
+            <form method='post' action='deleteservico.php'> 
+              <input type='hidden' class='form-control' name='id' value='" . $servico['nome'] . "' /> 
+              <input type='hidden' class='form-control' name='id' value='" . $servico['id'] . "' /> 
+              <button type='submit' name='submit' class='btn btn-danger'>Excluir</button>
+            </td>";
+        }   echo "</tr>"; 
+               
         ?>            
         </tbody>
       </table>
+      <a href='formservicos.php' class='btn btn-dark ml-5'>adcionar</a>
       <?php
         }else {
             echo '<h1>Você não tem nenhum serviço cadastrado.';
